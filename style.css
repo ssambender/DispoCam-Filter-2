@@ -1,0 +1,167 @@
+@font-face {
+    font-family: digital;
+    src: url("Date Stamp Bold.otf") format("opentype");
+}
+
+:root {
+    --bg-light: #FFEFD3;
+    --bg-dark: #252422;
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+    background: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button, a, input {
+    user-select: none;
+}
+
+.bordered {
+    border: 2px solid var(--bg-dark);
+}
+
+#mainContainer {
+    background-color: var(--bg-light);
+
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#uploadImageForDispo {
+    margin-top: 20px;
+}
+
+.imageInputLabel {
+    color: var(--bg-dark);
+    font-family: digital, monospace;
+    padding: 5px 20px;
+    cursor: pointer;
+    font-size: 30px;
+}
+.imageInputLabel:hover {
+    background-color: var(--bg-dark);
+    color: var(--bg-light);
+}
+
+.custom-file-upload {
+    user-select: none;
+}
+
+.imageInputLabelCropper {
+    border: solid 2px var(--bg-light);
+    color: var(--bg-light);
+    font-family: digital, monospace;
+    padding: 5px 20px;
+    cursor: pointer;
+    background: none;
+}
+
+.imageInputLabelCropper:hover {
+    background-color: var(--bg-light);
+    color: var(--bg-dark);
+}
+
+.img-container img {
+    max-width: 100%;
+}
+
+#loadingAnimationAndStatic {
+    width: 100vw;
+    text-align: center;
+    padding: 20px 0px;
+    font-family: digital, monospace;
+    font-size: 20px;
+    display: none;
+    color: var(--bg-dark);
+}
+
+
+#resultImageDisplay {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 30%;
+    margin: 64px 0;
+    user-select: none;
+    position: relative;
+}
+@media all and (orientation: portrait){
+    #resultImageDisplay {
+        width: 100%;
+    }
+}
+
+#resultCanvas {
+    width: 100%;
+}
+#resultCanvasBleed {
+    top: 0;
+    width: 100%;
+    mix-blend-mode: screen;  /* if plus-lighter doesn't work, use screen */
+}
+#resultCanvasSpeckle {
+    top: 0;
+    width: 100%;
+    /* above grain canvas layer */
+}
+#resultCanvasGrain {
+    top: 0;
+    width: 100%;
+}
+
+.editSecLabel {
+    font-weight: bold;
+}
+@media all and (orientation: portrait){
+    .editSecLabel {
+        font-size: 2rem;
+    }
+    .editImgBar button {
+        font-size: 1.5rem;
+        min-height: 64px;
+    }
+}
+
+.editImgBar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.editImgBar button {
+    background-color: var(--bg-light);
+    color: var(--bg-dark);
+    outline: none;
+    border: solid 2px var(--bg-dark);
+    margin: 0 2px 4px 2px;
+    min-height: 48px;
+    padding: 0 12px;
+    text-wrap: none;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.editImgBar button:hover {
+    text-decoration: underline;
+}
+.filterBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.activeFilterBtn {
+    background-color: var(--bg-dark) !important;
+    color: var(--bg-light) !important;
+}
+
+#bleedSlider {
+    width: 80%;
+}

@@ -53,6 +53,7 @@ Upcoming features:
 - [X] Mobile web-browser support
 - [X] Dark mode
 - [ ] Stack image filters
+- [ ] Date stamp
 
 ---
 

@@ -20,7 +20,12 @@
     <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"><path fill="var(--bg-dark)" d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
 </a>
 
-<img id="tempImage" style="position:absolute; display: flex;" src=""/>
+<div id="darkModeToggle" onclick="toggleDarkMode()">
+    <svg id="darkModeIcon" viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.8640000000000001"></g><g id="SVGRepo_iconCarrier"> <path d="M3.32031 11.6835C3.32031 16.6541 7.34975 20.6835 12.3203 20.6835C16.1075 20.6835 19.3483 18.3443 20.6768 15.032C19.6402 15.4486 18.5059 15.6834 17.3203 15.6834C12.3497 15.6834 8.32031 11.654 8.32031 6.68342C8.32031 5.50338 8.55165 4.36259 8.96453 3.32996C5.65605 4.66028 3.32031 7.89912 3.32031 11.6835Z" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+    <svg id="lightModeIcon" viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 3V4M12 20V21M4 12H3M6.31412 6.31412L5.5 5.5M17.6859 6.31412L18.5 5.5M6.31412 17.69L5.5 18.5001M17.6859 17.69L18.5 18.5001M21 12H20M16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12Z" stroke-width="1.224" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+</div>
+
+<img id="tempImage" style="position:absolute; display: flex; opacity: 0;" src=""/>
 
 <div id="creditsBottom">
     <a href="https://sambender.net" target="_blank">Sam Bender 2024</a>
@@ -161,7 +166,6 @@
 </div>
 
 <script>
-    let loadingSeconds = 1; // lol it can load instantly, but it's kinda exciting waiting for it to finish
     let tempVarImage;
 
     let uploadedFileName = "";
@@ -173,7 +177,10 @@
     var year = currentDate.getFullYear().toString().slice(-2);
     document.getElementById('homeScreenDate').innerText = month + ' ' + day + "'" + year;
 
-
+    let isDarkMode = false;
+    if(localStorage.getItem("theme") === "dark") {
+        toggleDarkMode();
+    }
 
     // Code to animate loading text/symbol thing
     var loadingAnimation = document.getElementById("loadingAnimation");
@@ -503,6 +510,27 @@
             grainContext.drawImage(grainImg, 0, 0, grainCanvas.width, grainCanvas.height);
             grainContext.restore();
         };
+    }
+
+    function toggleDarkMode() {
+        // dark mode
+        if(isDarkMode) {
+            //set to lightmode
+            document.documentElement.style.setProperty('--bg-light', '#FFEFD3');
+            document.documentElement.style.setProperty('--bg-dark', '#252422');
+            localStorage.setItem("theme", "light");
+            document.getElementById('lightModeIcon').style.display = 'none';
+            document.getElementById('darkModeIcon').style.display = 'flex';
+        }
+        else {
+            //set to darkmode
+            document.documentElement.style.setProperty('--bg-light', '#252422');
+            document.documentElement.style.setProperty('--bg-dark', '#676767');
+            localStorage.setItem("theme", "dark");
+            document.getElementById('lightModeIcon').style.display = 'flex';
+            document.getElementById('darkModeIcon').style.display = 'none';
+        }
+        isDarkMode = !isDarkMode;
     }
     // -----------------------------------------------------------------------
 </script>

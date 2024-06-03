@@ -63,6 +63,9 @@ Upcoming features:
 
 Bootstrap and jQuery
 
+
 **Special thanks:**
+
 Emanuele Feronato
+
 Kishmiryan Karlen

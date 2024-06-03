@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>DispoCam Filter</title>
+    <link rel="icon" href="favicon.png" />
     <link rel="stylesheet" href="https://unpkg.com/bootstrap@4/dist/css/bootstrap.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="cropper.css">
-    <link rel="icon" href="favicon.png" />
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -21,6 +21,10 @@
 </a>
 
 <img id="tempImage" style="position:absolute; display: flex;" src=""/>
+
+<div id="creditsBottom">
+    <a href="https://sambender.net" target="_blank">Sam Bender 2024</a>
+</div>
 
 <!-- SPLASH DATESTAMP -->
 <div style="position:absolute; bottom: 0; right: 1vw; font-family: digital, monospace; font-size: 2vw; color: var(--bg-dark);">
@@ -67,7 +71,7 @@
         <canvas id="resultCanvasGrain" width="1500" height="1000" class="bordered" style="position: absolute"></canvas>
         <canvas id="resultCanvas" width="1500" height="1000" class="bordered"></canvas>
 
-        <span class="editSecLabel">Filter:</span>
+        <span class="editSecLabel">Image Filter:</span>
         <div class="editImgBar">
             <button class="filterBtn" onclick="filterChanged(this, 'ORIGINAL.jpg');" style="border: 2px dashed var(--bg-dark);"><i>NONE</i></button>
             <button class="filterBtn activeFilterBtn" onclick="filterChanged(this, 'disposable.png');">DISPOCAM 1</button>
@@ -76,10 +80,10 @@
             <button class="filterBtn" onclick="filterChanged(this, 'dusk.JPG');">DUSK</button>
             <button class="filterBtn" onclick="filterChanged(this, 'joshuatree.JPG');">JOSHUA TREE</button>
             <button class="filterBtn" onclick="filterChanged(this, 'mirage.JPG');">MIRAGE</button>
-            <button class="filterBtn" onclick="filterChanged(this, 'darken.png');">UNLIT</button>           <!-- FIX (copy dark en from sc) -->
+            <button class="filterBtn" onclick="filterChanged(this, 'palm.JPG');">PALM</button>
         </div>
         <div class="editImgBar">
-            <button class="filterBtn" onclick="filterChanged(this, 'palm.JPG');">PALM</button>
+            <button class="filterBtn" onclick="filterChanged(this, 'darken.png');">UNLIT</button>           <!-- FIX (copy dark en from sc) -->
             <button class="filterBtn" onclick="filterChanged(this, 'mocha.png');">MOCHA</button>            <!-- FIX (copy mocha from sc) -->
             <button class="filterBtn" onclick="filterChanged(this, 'badtan.png');">BAD TAN</button>
             <button class="filterBtn" onclick="filterChanged(this, 'houston.png');">HOUSTON</button>
@@ -95,7 +99,7 @@
             <button class="filterBtn" onclick="filterChanged(this, 'magentashadow.png');">MAGENTA SHADOW</button>
         </div-->
 
-        <span class="editSecLabel">Other:</span>
+        <span class="editSecLabel">Imperfections:</span>
         <div class="editImgBar">
             <button class="dustBtn activeFilterBtn" onclick="specklesChanged(this, 'on');">DUST ON</button>
             <button class="dustBtn" onclick="specklesChanged(this, 'off');">DUST OFF</button>
@@ -106,7 +110,7 @@
 
         <span class="editSecLabel">Light Bleed:</span>
         <div class="editImgBar">
-            <div id="bleedNumber">0</div>
+            <div id="bleedNumber">LIGHT BLEED 00</div>
             <input id="bleedSlider" min="0" max="10" step="1" value="0" type="range">
         </div>
     </div>
@@ -453,9 +457,16 @@
         if(bleed_val > 0) {
             console.log('bleed/' + bleed_val.toString() + '.jpg');
             img.src = 'bleed/' + bleed_val.toString() + '.jpg';
+            if(bleed_val > 9) {
+                document.getElementById('bleedNumber').innerText = 'LIGHT BLEED ' + bleed_val.toString();
+            }
+            else {
+                document.getElementById('bleedNumber').innerText = 'LIGHT BLEED 0' + bleed_val.toString();
+            }
         }
         else {
             img.src = 'blank.png';
+            document.getElementById('bleedNumber').innerText = 'LIGHT BLEED 00';
         }
 
         img.onload = function () {
@@ -463,8 +474,6 @@
             context.drawImage(img, 0, 0, theCanvas.width, theCanvas.height);
             context.restore();
         };
-
-        document.getElementById('bleedNumber').innerText = bleed_val.toString();
     }
     document.getElementById('bleedSlider').addEventListener("input", function() {
         bleedChanged();

@@ -26,6 +26,30 @@ button, a, input {
     border: 2px solid var(--bg-dark);
 }
 
+/* Sam Bender 2024 site link */
+#creditsBottom {
+    position: absolute;
+    bottom: 20px;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+    color: var(--bg-dark);
+    text-decoration: underline;
+    box-sizing: border-box;
+    text-transform: uppercase;
+}
+#creditsBottom a {
+    color: inherit;
+    cursor: pointer;
+    opacity: 50%;
+}
+#creditsBottom a:hover {
+    color: var(--bg-dark);
+    opacity: 100%;
+}
+
 #mainContainer {
     background-color: var(--bg-light);
 
@@ -121,6 +145,7 @@ button, a, input {
 
 .editSecLabel {
     font-weight: bold;
+    margin-top: 8px;
 }
 @media all and (orientation: portrait){
     .editSecLabel {
@@ -130,6 +155,12 @@ button, a, input {
         font-size: 1.5rem;
         min-height: 64px;
     }
+}
+
+#bleedNumber {
+    white-space: nowrap;
+    overflow: hidden;
+    padding-right: 8px;
 }
 
 .editImgBar {
@@ -164,4 +195,9 @@ button, a, input {
 
 #bleedSlider {
     width: 80%;
+
+    accent-color: #4f4c4c;
+    outline: none;
+    border: none;
+    cursor: pointer;
 }

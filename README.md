@@ -20,14 +20,14 @@ Dispocam Filter V2 is a free web application, that provides filters and tools to
 from popular apps are replicated without the cost or unnecessary features. 
 
 Dispocam Filter V2 is a follow-up project to my original [Dispocam Filter](https://sambender.net/dispoCameraFilter.html) project.
-The goal of the original was to provide a quick as possible method for turning photos into disposable camera appearing photos. I was dissatisfied with
-all of the existing apps and websites to do so, both with their over complicatedness and their results, so I decided to make my own. Version 1 will still be
-running and updated some, but I wanted to iterate upon it to provide a more well rounded experience. To make the transition from V1 to V2 easier, all of the options
+The goal of the original was to provide a quick as possible method for turning photos into disposable camera-appearing photos. I was dissatisfied with
+all of the existing apps and websites to do so, both with their overly complicatedness and their results, so I decided to make my own. Version 1 will still be
+running and updated some, but I wanted to iterate upon it to provide a more well-rounded experience. To make the transition from V1 to V2 easier, all of the options
 from Version 1 are the defaults so the identical results can be produced in the same amount of time!
 
 
 What does Version 2 add?
-- 14 hand selected color correcting filters
+- 14 hand-selected color correcting filters
 - Randomized lens dust and particle overlays
 - 10+ Optical light bleed overlays
 - Variable grain overlay
@@ -51,7 +51,16 @@ Upcoming features:
 - [ ] Glow and chromatic aberration
 - [ ] Intensity strength sliders for grain, imperfections, and bleeding
 - [X] Mobile web-browser support
-- [ ] Dark mode
+- [X] Dark mode
+- [ ] Stack image filters
+
+---
+
+Known bugs:
+- [X] Light bleed scrollbar not working on mobile
+- [ ] A small range of colors do not properly display as RAW with default LUT
+
+_Please report any bugs you find!_
 
 ---
 

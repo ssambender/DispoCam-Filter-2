@@ -72,27 +72,52 @@
         <!-- https://www.dafont.com/theme.php?cat=302&page=2&text=6+3+%2724+2%3A23 -->
         <canvas id="resultCanvas" width="1500" height="1000" class="bordered"></canvas>
 
-        <span class="editSecLabel">Image Filter:</span>
-        <div class="editImgBar">
-            <button class="filterBtn" onclick="filterChanged(this, 'ORIGINAL.jpg');" style="border: 2px dashed var(--bg-dark);"><i>NONE</i></button>
-            <button class="filterBtn activeFilterBtn" onclick="filterChanged(this, 'disposable.png');">DISPOCAM 1</button>
-            <button class="filterBtn" onclick="filterChanged(this, 'dawn.JPG');">DAWN</button>
-            <button class="filterBtn" onclick="filterChanged(this, 'dunes.JPG');">DUNES</button>
-            <button class="filterBtn" onclick="filterChanged(this, 'dusk.JPG');">DUSK</button>
-            <button class="filterBtn" onclick="filterChanged(this, 'joshuatree.JPG');">JOSHUA TREE</button>
-            <button class="filterBtn" onclick="filterChanged(this, 'mirage.JPG');">MIRAGE</button>
-            <button class="filterBtn" onclick="filterChanged(this, 'palm.JPG');">PALM</button>
-        </div>
-        <div class="editImgBar">
-            <button class="filterBtn" onclick="filterChanged(this, 'darken.png');">UNLIT</button>           <!-- FIX (copy dark en from sc) -->
-            <button class="filterBtn" onclick="filterChanged(this, 'mocha.png');">MOCHA</button>            <!-- FIX (copy mocha from sc) -->
-            <button class="filterBtn" onclick="filterChanged(this, 'badtan.png');">BAD TAN</button>
-            <button class="filterBtn" onclick="filterChanged(this, 'houston.png');">HOUSTON</button>
-            <button class="filterBtn" onclick="filterChanged(this, 'citrus.png');">CITRUS</button>
-            <button class="filterBtn" onclick="filterChanged(this, 'tealorange.png');">SUNKIST</button>     <!-- FIX (copy teal orange on sc) -->
-            <button class="filterBtn" onclick="filterChanged(this, 'indie.png');">INDIE 2X</button>
+        <div id="imgFiltersWide">
+            <span class="editSecLabel">Image Filter:</span>
+            <div class="editImgBar">
+                <button class="filterBtn" onclick="filterChanged(this, 'ORIGINAL.jpg');" style="border: 2px dashed var(--bg-dark);"><i>NONE</i></button>
+                <button class="filterBtn activeFilterBtn" onclick="filterChanged(this, 'disposable.png');">DISPOCAM 1</button>
+                <button class="filterBtn" onclick="filterChanged(this, 'dawn.JPG');">DAWN</button>
+                <button class="filterBtn" onclick="filterChanged(this, 'dunes.JPG');">DUNES</button>
+                <button class="filterBtn" onclick="filterChanged(this, 'dusk.JPG');">DUSK</button>
+                <button class="filterBtn" onclick="filterChanged(this, 'joshuatree.JPG');">JOSHUA TREE</button>
+                <button class="filterBtn" onclick="filterChanged(this, 'mirage.JPG');">MIRAGE</button>
+                <button class="filterBtn" onclick="filterChanged(this, 'palm.JPG');">PALM</button>
+            </div>
+            <div class="editImgBar">
+                <button class="filterBtn" onclick="filterChanged(this, 'darken.png');">UNLIT</button>           <!-- FIX (copy dark en from sc) -->
+                <button class="filterBtn" onclick="filterChanged(this, 'mocha.png');">MOCHA</button>            <!-- FIX (copy mocha from sc) -->
+                <button class="filterBtn" onclick="filterChanged(this, 'badtan.png');">BAD TAN</button>
+                <button class="filterBtn" onclick="filterChanged(this, 'houston.png');">HOUSTON</button>
+                <button class="filterBtn" onclick="filterChanged(this, 'citrus.png');">CITRUS</button>
+                <button class="filterBtn" onclick="filterChanged(this, 'tealorange.png');">SUNKIST</button>     <!-- FIX (copy teal orange on sc) -->
+                <button class="filterBtn" onclick="filterChanged(this, 'indie.png');">INDIE 2X</button>
 
+            </div>
         </div>
+        <div id="imgFiltersVert">
+            <span class="editSecLabel">Image Filter:</span>
+            <div id="scrollContainer">
+                <div class="editImgBar">
+                    <button class="filterBtn" onclick="filterChanged(this, 'ORIGINAL.jpg');" style="border: 2px dashed var(--bg-dark);"><i>NONE</i></button>
+                    <button class="filterBtn activeFilterBtn" onclick="filterChanged(this, 'disposable.png');">DISPOCAM 1</button>
+                    <button class="filterBtn" onclick="filterChanged(this, 'dawn.JPG');">DAWN</button>
+                    <button class="filterBtn" onclick="filterChanged(this, 'dunes.JPG');">DUNES</button>
+                    <button class="filterBtn" onclick="filterChanged(this, 'dusk.JPG');">DUSK</button>
+                    <button class="filterBtn" onclick="filterChanged(this, 'joshuatree.JPG');">JOSHUA TREE</button>
+                    <button class="filterBtn" onclick="filterChanged(this, 'mirage.JPG');">MIRAGE</button>
+                    <button class="filterBtn" onclick="filterChanged(this, 'palm.JPG');">PALM</button>
+                    <button class="filterBtn" onclick="filterChanged(this, 'darken.png');">UNLIT</button>           <!-- FIX (copy dark en from sc) -->
+                    <button class="filterBtn" onclick="filterChanged(this, 'mocha.png');">MOCHA</button>            <!-- FIX (copy mocha from sc) -->
+                    <button class="filterBtn" onclick="filterChanged(this, 'badtan.png');">BAD TAN</button>
+                    <button class="filterBtn" onclick="filterChanged(this, 'houston.png');">HOUSTON</button>
+                    <button class="filterBtn" onclick="filterChanged(this, 'citrus.png');">CITRUS</button>
+                    <button class="filterBtn" onclick="filterChanged(this, 'tealorange.png');">SUNKIST</button>     <!-- FIX (copy teal orange on sc) -->
+                    <button class="filterBtn" onclick="filterChanged(this, 'indie.png');">INDIE 2X</button>
+                </div>
+            </div>
+        </div>
+
         <!--div class="editImgBar">
             <button class="filterBtn" onclick="filterChanged(this, 'oasis.JPG');">OASIS</button>
             <button class="filterBtn" onclick="filterChanged(this, 'summer.png');">NOSTALGIA SUMMER</button>     FIX (copy HDRv2 i92NET on sc)
@@ -101,7 +126,7 @@
         </div-->
 
         <span class="editSecLabel">Imperfections:</span>
-        <i class="editSecHint">click "ON" button multiple times to randomize effect</i>
+        <i class="editSecHint">click "ON" button multiple times to randomize/cycle effect</i>
         <div class="editImgBar">
             <button class="dustBtn activeFilterBtn" onclick="specklesChanged(this, 'on');">DUST ON</button>
             <button class="dustBtn" onclick="specklesChanged(this, 'off');">DUST OFF</button>
@@ -171,6 +196,7 @@
 <script>
     let tempVarImage;
     let showDate = true;
+    let dateScreen = true;
 
     let uploadedFileName = "";
 
@@ -329,7 +355,12 @@
 
                     if(showDate) {
                         const dateCanvas = document.getElementById("resultCanvasDate"); //NEW
-                        ctx.globalCompositeOperation = 'screen'; // hard-light
+                        if(dateScreen){
+                            ctx.globalCompositeOperation = 'screen'; // hard-light
+                        }
+                        else {
+                            ctx.globalCompositeOperation = 'hard-light'; // hard-light
+                        }
                         ctx.drawImage(dateCanvas, 0, 0, finalCanvas.width, finalCanvas.height); // NEW
                     }
 
@@ -517,6 +548,16 @@
         if(state === "on") {
             document.getElementById('resultCanvasDate').style.visibility = 'visible';
             showDate = true;
+
+            if(dateScreen) {
+                // switch to hardlight
+                document.getElementById('resultCanvasDate').style.mixBlendMode = 'hard-light';
+            }
+            else {
+                // switch back to screen
+                document.getElementById('resultCanvasDate').style.mixBlendMode = 'screen';
+            }
+            dateScreen = !dateScreen;
         }
         else {
             document.getElementById('resultCanvasDate').style.visibility = 'hidden';

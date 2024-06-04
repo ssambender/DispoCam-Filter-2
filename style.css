@@ -200,6 +200,10 @@ button, a, input {
 }
 
 @media all and (orientation: portrait){
+    #uploadImageForDispo .imageInputLabel {
+        font-size: 60px;
+    }
+
     #resultImageDisplay {
         width: 95%;
     }
@@ -292,6 +296,7 @@ button, a, input {
     }
     .editSecHint {
         padding-bottom: 8px;
+        font-size: 1.5rem;
     }
 }
 .filterBtn {
@@ -311,4 +316,37 @@ button, a, input {
     outline: none;
     border: none;
     cursor: pointer;
+}
+
+#imgFiltersWide {
+    display: flex;
+    flex-direction: column;
+}
+#imgFiltersVert {
+    display: none;
+}
+@media all and (orientation: portrait) {
+    #imgFiltersWide {
+        display: none;
+    }
+
+    #imgFiltersVert {
+        display: flex;
+        flex-direction: column;
+    }
+    #scrollContainer {
+        overflow-x: scroll;
+        position: relative;
+    }
+    #imgFiltersVert .editImgBar {
+        width: fit-content;
+        overflow-x: scroll;
+    }
+    #imgFiltersVert .editImgBar button {
+        width: fit-content;
+        overflow: hidden;
+        min-height: 84px;
+        padding: 0 18px;
+        margin: 0 6px 12px 6px;
+    }
 }

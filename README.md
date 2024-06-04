@@ -8,14 +8,25 @@
 
 ---
 
-<h3 align="center">
-  <a href="https://ssambender.github.io/DispoCam-Filter-2/">DISPOCAM FILTER V2</a>
+<div>
   
+<h3 align="center">
+    <a href="https://ssambender.github.io/DispoCam-Filter-2/">DISPOCAM FILTER V2</a>
+    
   VINTAGE PHOTO EDITOR
 </h3>
+  
+</div>
+
 
 ---
 
+<div align="center">
+    <a href="https://ssambender.github.io/DispoCam-Filter-2/" target="_blank">
+          <img src="https://raw.githubusercontent.com/ssambender/DispoCam-Filter-2/main/favicon-hd.png">
+    </a>
+</div>
+<br>
 Dispocam Filter V2 is a free web application, that provides filters and tools to make images look like they were taken on film. Created with simplicity in mind, many powerful features
 from popular apps are replicated without the cost or unnecessary features. 
 
@@ -50,12 +61,14 @@ Upcoming features:
 - [X] Styled range inputs
 - [ ] Glow and chromatic aberration
 - [ ] Intensity strength sliders for grain, imperfections, and bleeding
-- [X] Mobile web-browser support
+- [X] Mobile web browser support
 - [X] Dark mode
 - [ ] Stack image filters
 - [X] Date stamp
-- [ ] More light bleed effects
+- [X] Date stamp multiple blend modes
+- [ ] More light bleed overlays
 - [X] Mobile icon
+- [ ] Randomize button to shuffle all effects
 
 ---
 

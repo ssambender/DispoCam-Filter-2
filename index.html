@@ -1,23 +1,17 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>DispoCam Filter</title>
     <link rel="icon" href="favicon.png" />
+    <link rel="apple-touch-icon" href="app-icon.png" />
     <link rel="stylesheet" href="https://unpkg.com/bootstrap@4/dist/css/bootstrap.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="cropper.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<!--
-    Thanks to the following two people for helping with color LUT application in JS:
-    https://www.emanueleferonato.com/2018/06/09/playing-with-javascript-photos-and-3d-luts-lookup-tables/
-    https://gist.github.com/kishmiryan-karlen/559c190f6c20856ee323
--->
-
-<a style="position: absolute; top: 24px; left: 24px;" href="https://github.com/ssambender/DispoCam-Filter-2" target="_blank">
-    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"><path fill="var(--bg-dark)" d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+<a id="githubIcon" style="position: absolute; top: 24px; left: 24px;" href="https://github.com/ssambender/DispoCam-Filter-2" target="_blank">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="var(--bg-dark)" d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
 </a>
 
 <div id="darkModeToggle" onclick="toggleDarkMode()">
@@ -32,7 +26,7 @@
 </div>
 
 <!-- SPLASH DATESTAMP -->
-<div style="position:absolute; bottom: 0; right: 1vw; font-family: digital, monospace; font-size: 2vw; color: var(--bg-dark);">
+<div style="position:absolute; bottom: 0; right: 1vw; font-family: digital, monospace; font-size: 1.5vw; color: var(--bg-dark);">
     <div id="homeScreenDate">00 00 '00</div>
 </div>
 
@@ -74,6 +68,8 @@
         <canvas id="resultCanvasSpeckle" width="1500" height="1000" class="bordered" style="position: absolute"></canvas>
         <canvas id="resultCanvasBleed" width="1500" height="1000" class="bordered" style="position: absolute"></canvas>
         <canvas id="resultCanvasGrain" width="1500" height="1000" class="bordered" style="position: absolute"></canvas>
+        <canvas id="resultCanvasDate" width="1500" height="1000" class="bordered" style="position: absolute"></canvas>
+        <!-- https://www.dafont.com/theme.php?cat=302&page=2&text=6+3+%2724+2%3A23 -->
         <canvas id="resultCanvas" width="1500" height="1000" class="bordered"></canvas>
 
         <span class="editSecLabel">Image Filter:</span>
@@ -105,17 +101,21 @@
         </div-->
 
         <span class="editSecLabel">Imperfections:</span>
+        <i class="editSecHint">click "ON" button multiple times to randomize effect</i>
         <div class="editImgBar">
             <button class="dustBtn activeFilterBtn" onclick="specklesChanged(this, 'on');">DUST ON</button>
             <button class="dustBtn" onclick="specklesChanged(this, 'off');">DUST OFF</button>
             <div style="width: 20px"></div>
             <button class="grainBtn activeFilterBtn" onclick="grainChanged(this, 'on');">GRAIN ON</button>
             <button class="grainBtn" onclick="grainChanged(this, 'off');">GRAIN OFF</button>
+            <div style="width: 20px"></div>
+            <button class="dateBtn activeFilterBtn" onclick="dateChanged(this, 'on');">DATE ON</button>
+            <button class="dateBtn" onclick="dateChanged(this, 'off');">DATE OFF</button>
         </div>
 
         <span class="editSecLabel">Light Bleed:</span>
         <div class="editImgBar">
-            <div id="bleedNumber">LIGHT BLEED 00</div>
+            <div id="bleedNumber">00</div>
             <input id="bleedSlider" min="0" max="10" step="1" value="0" type="range">
         </div>
     </div>
@@ -129,7 +129,7 @@
 
     <!-- MAKE ANOTHER BUTTON -->
     <div id="makeAnotherDispoContainer" style="flex-direction: column; display: none; text-align: center; color: var(--bg-dark);">
-        <div class="imageInputLabel" onclick="location.reload();" style="font-size: 20px; margin-top: 10px;">MAKE ANOTHER</div>
+        <div class="imageInputLabel" id="makeAnotherLabel" onclick="location.reload();" style="margin-top: 10px;">MAKE ANOTHER</div>
     </div>
 
     <div class="container">
@@ -162,11 +162,15 @@
             </div>
         </div>
     </div>
-
 </div>
-
+<!--
+    Thanks to the following two people for helping with color LUT application in JS:
+    https://www.emanueleferonato.com/2018/06/09/playing-with-javascript-photos-and-3d-luts-lookup-tables/
+    https://gist.github.com/kishmiryan-karlen/559c190f6c20856ee323
+-->
 <script>
     let tempVarImage;
+    let showDate = true;
 
     let uploadedFileName = "";
 
@@ -175,7 +179,7 @@
     var day = currentDate.getDate();
     var month = currentDate.getMonth() + 1;
     var year = currentDate.getFullYear().toString().slice(-2);
-    document.getElementById('homeScreenDate').innerText = month + ' ' + day + "'" + year;
+    document.getElementById('homeScreenDate').innerText = month + ' ' + day + " '" + year;
 
     let isDarkMode = false;
     if(localStorage.getItem("theme") === "dark") {
@@ -195,7 +199,6 @@
     var imagesLoaded = 0;
 
     function URLToCanvas(url, id) {
-        console.log("-- FUNC: URLToCanvas");
         var theCanvas = document.getElementById(id);
         var context = theCanvas.getContext("2d");
         var img = new Image();
@@ -212,18 +215,15 @@
     }
 
     function handleImageUpload() {
-        console.log("-- FUNC: handleImageUpload");
         // Do immediately after file is submitted
-        document.getElementById("loadingAnimationAndStatic").style.display = "inline-block";
         document.getElementById("uploadImageForDispo").style.display = "none";
-
-        document.getElementById("loadingAnimationAndStatic").style.display = "none";
         document.getElementById("resultImageDisplay").style.display = "flex";
 
         var input = document.getElementById("imageInput");
 
         var file = input.files[0];
         file = tempVarImage;
+
         var reader = new FileReader();
         reader.onload = function (event) {
             URLToCanvas(event.target.result, "imageCanvas");
@@ -244,7 +244,6 @@
     let encoded64;
 
     function applyLUT(imageID, lutID, resultID) {
-        console.log("-- FUNC: applyLUT");
         var imageContext = document.getElementById(imageID).getContext("2d");
         var lutContext = document.getElementById(lutID).getContext("2d");
         var imageData = imageContext.getImageData(0, 0, 1500, 1000);
@@ -278,10 +277,7 @@
     }
 
     function downloadImg() {
-        console.log("-- FUNC: downloadImg");
         function downloadMergedImage(base64) {
-            console.log("-- FUNC: downloadMergedImage");
-
             const link = document.createElement('a');
             link.href = base64;
 
@@ -294,7 +290,6 @@
 
         var dustOverlay = document.getElementById('resultCanvasSpeckle').toDataURL();
         var grainOverlay = document.getElementById('resultCanvasGrain').toDataURL();
-
         document.getElementById('resultCanvasGrain').style.mixBlendMode = "normal";
         var bleedOverlay = document.getElementById('resultCanvasBleed').toDataURL();
 
@@ -311,8 +306,8 @@
         });
         * */
 
+        //todo - IF needsRotate === true, ROTATE CW 90deg BEFORE SAVING
         mergeImages([encoded64, dustOverlay, grainOverlay]).then(b64 => {
-
             const finalCanvas = document.createElement('canvas');
             const ctx = finalCanvas.getContext('2d');
             const img = new Image();
@@ -329,10 +324,42 @@
                     // Draw the bleed overlay
                     ctx.drawImage(bleedImg, 0, 0, finalCanvas.width, finalCanvas.height);
 
+                    ctx.globalCompositeOperation = 'source-over'; //NEW
+
+                    if(showDate) {
+                        const dateCanvas = document.getElementById("resultCanvasDate"); //NEW
+                        ctx.globalCompositeOperation = 'screen'; // hard-light
+                        ctx.drawImage(dateCanvas, 0, 0, finalCanvas.width, finalCanvas.height); // NEW
+                    }
+
+
+                    if (needsRotate) {
+                        const rotatedCanvas = document.createElement('canvas');
+                        const rotatedCtx = rotatedCanvas.getContext('2d');
+                        rotatedCanvas.width = finalCanvas.height;
+                        rotatedCanvas.height = finalCanvas.width;
+
+                        // Rotate the canvas 90 degrees clockwise
+                        rotatedCtx.translate(rotatedCanvas.width / 2, rotatedCanvas.height / 2);
+                        rotatedCtx.rotate(Math.PI / 2);
+                        rotatedCtx.drawImage(finalCanvas, -finalCanvas.width / 2, -finalCanvas.height / 2);
+
+                        // Get the final image data from the rotated canvas
+                        const finalImageData = rotatedCanvas.toDataURL();
+                        // Download the final rotated image
+                        downloadMergedImage(finalImageData);
+                    } else {
+                        // Get the final image data from the final canvas
+                        const finalImageData = finalCanvas.toDataURL();
+                        // Download the final image
+                        downloadMergedImage(finalImageData);
+                    }
+
+
                     // Get the final image data
-                    const finalImageData = finalCanvas.toDataURL();
+                    //const finalImageData = finalCanvas.toDataURL();
                     // Download the final image
-                    downloadMergedImage(finalImageData);
+                    //downloadMergedImage(finalImageData);
                 };
                 bleedImg.src = bleedOverlay;
             };
@@ -341,7 +368,6 @@
     }
 
     function filterChanged(button, name) {
-        console.log("-- FUNC: filterChanged");
         console.log("change filter to " + name);
 
         imagesLoaded = 1
@@ -465,15 +491,15 @@
             console.log('bleed/' + bleed_val.toString() + '.jpg');
             img.src = 'bleed/' + bleed_val.toString() + '.jpg';
             if(bleed_val > 9) {
-                document.getElementById('bleedNumber').innerText = 'LIGHT BLEED ' + bleed_val.toString();
+                document.getElementById('bleedNumber').innerText = bleed_val.toString();
             }
             else {
-                document.getElementById('bleedNumber').innerText = 'LIGHT BLEED 0' + bleed_val.toString();
+                document.getElementById('bleedNumber').innerText = '0' + bleed_val.toString();
             }
         }
         else {
             img.src = 'blank.png';
-            document.getElementById('bleedNumber').innerText = 'LIGHT BLEED 00';
+            document.getElementById('bleedNumber').innerText = '00';
         }
 
         img.onload = function () {
@@ -485,6 +511,42 @@
     document.getElementById('bleedSlider').addEventListener("input", function() {
         bleedChanged();
     }, false);
+
+    function dateChanged(button, state) {
+        if(state === "on") {
+            document.getElementById('resultCanvasDate').style.visibility = 'visible';
+            showDate = true;
+        }
+        else {
+            document.getElementById('resultCanvasDate').style.visibility = 'hidden';
+            showDate = false;
+        }
+
+        let buttons = document.querySelectorAll('.dateBtn');
+        buttons.forEach(btn => btn.classList.remove('activeFilterBtn'));
+        button.classList.add('activeFilterBtn');
+    }
+
+    function setDateStamp(text, color) {
+        // fonts: https://www.dafont.com/theme.php?cat=302&page=2&text=6+3+%2724+2%3A23
+        var dateCanvas = document.getElementById("resultCanvasDate");
+        var dateContext = dateCanvas.getContext("2d");
+
+        dateContext.clearRect(0, 0, dateCanvas.width, dateCanvas.height);
+        dateContext.globalCompositeOperation = 'screen';
+
+        dateContext.fillStyle = color;
+        dateContext.font = "bold 48px digital";
+        dateContext.textAlign = 'right';
+        dateContext.textBaseline = 'bottom';
+
+        dateContext.shadowColor = '#ff4d00'; // string
+        dateContext.shadowOffsetX = 0; // integer
+        dateContext.shadowOffsetY = 0;
+        dateContext.shadowBlur = 8;
+
+        dateContext.fillText(text, dateCanvas.width - 24, dateCanvas.height - 12);
+    }
 
     function loadDefaultOverlays() {
         console.log("loading default overlays...");
@@ -510,6 +572,15 @@
             grainContext.drawImage(grainImg, 0, 0, grainCanvas.width, grainCanvas.height);
             grainContext.restore();
         };
+
+        // date stamp
+        let todaysDate = month + ' ' + day + " '" + year;
+        if(modifiedDate) {
+            setDateStamp(modifiedDate, '#f2b10c');
+        }
+        else {
+            setDateStamp(todaysDate.toString(), '#f2b10c');
+        }
     }
 
     function toggleDarkMode() {
@@ -539,6 +610,9 @@
 <script src="https://unpkg.com/bootstrap@4/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="cropper.js"></script>
 <script>
+    let modifiedDate;
+    let needsRotate = false;
+
     // Converts the cropped picture to a file, so it can be used with the LUT function
     function convertDataURLToFile(dataURL, filename) {
         const [mime, base64] = dataURL.split(',');
@@ -551,6 +625,13 @@
         const file = new File([blob], filename, { type: mime });
 
         return file;
+    }
+
+    function formatDate(date) {
+        var month = date.getMonth() + 1; // getMonth() returns 0-11
+        var day = date.getDate();
+        var year = date.getFullYear().toString().slice(-2); // Get last two digits of the year
+        return month + " " + day + " '" + year;
     }
 
     // Set stuff up on page load
@@ -576,6 +657,51 @@
 
             if (files && files.length > 0) {
                 file = files[0];
+
+                let lastDate = new Date(file.lastModified);
+                modifiedDate = formatDate(lastDate);
+
+                // check uploaded image dimensions
+                var img = new Image();
+                img.onload = function() {
+                    var sizes = {
+                        width:this.width,
+                        height: this.height
+                    };
+                    URL.revokeObjectURL(this.src);
+
+                    console.log('onload sizes', sizes);
+
+                    //if(sizes.height > sizes.width) {
+                    //    console.log("ROTATE IMAGE HERE");
+                    //}
+
+                    if (sizes.height > sizes.width) {
+                        needsRotate = true;
+
+                        // Rotate image 90 degrees counter-clockwise
+                        var canvas = document.createElement('canvas');
+                        var ctx = canvas.getContext('2d');
+
+                        // Set canvas dimensions to the rotated dimensions
+                        canvas.width = sizes.height;
+                        canvas.height = sizes.width;
+
+                        // Rotate the canvas context
+                        ctx.translate(canvas.width / 2, canvas.height / 2);
+                        ctx.rotate(-Math.PI / 2);
+                        ctx.drawImage(img, -sizes.width / 2, -sizes.height / 2);
+
+                        // Convert the canvas to a data URL and show the modal
+                        var rotatedUrl = canvas.toDataURL();
+                        done(rotatedUrl);
+                    } else {
+                        // No rotation needed
+                        done(URL.createObjectURL(file));
+                    }
+                }
+                img.src = URL.createObjectURL(file);
+
 
                 // saves the initial upload as uploadedFileName
                 uploadedFileName = file.name.replace(/\.[^/.]+$/, "");

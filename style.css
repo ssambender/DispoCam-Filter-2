@@ -16,6 +16,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background: var(--bg-light);
 }
 
 button, a, input {
@@ -50,6 +51,11 @@ button, a, input {
     opacity: 100%;
 }
 
+#githubIcon {
+    width: 48px;
+    height: 48px;
+}
+
 #darkModeToggle {
     position: absolute;
     top: 24px;
@@ -65,10 +71,12 @@ button, a, input {
     height: 100%;
 
     stroke: var(--bg-dark);
-    opacity: 50%;
+    fill: var(--bg-light);
+    transition: fill .1s;
 }
 #darkModeToggle:hover svg {
-    opacity: 100%;
+    fill: var(--bg-dark);
+    transition: fill .1s;
 }
 #darkModeIcon {
     display: flex;
@@ -76,6 +84,39 @@ button, a, input {
 #lightModeIcon {
     display: none;
 }
+@media all and (orientation: portrait) {
+    #homeScreenDate {
+        font-size: 3rem;
+    }
+
+    #creditsBottom a {
+        font-size: 2rem;
+    }
+
+    #githubIcon {
+        height: 64px;
+        width: 64px;
+    }
+
+    #darkModeToggle {
+        height: 64px;
+        width: 64px;
+    }
+
+    #darkModeToggle svg {
+        fill: var(--bg-dark);
+    }
+
+    #modal {
+         margin-top: 30vh;
+     }
+    .modal-content {
+        transform: scale(1.5);
+    }
+}
+
+
+
 
 #mainContainer {
     background-color: var(--bg-light);
@@ -149,9 +190,23 @@ button, a, input {
     user-select: none;
     position: relative;
 }
+
+#makeAnotherDispoContainer, #makeAnotherLabel {
+    font-size: 20px;
+}
+
 @media all and (orientation: portrait){
     #resultImageDisplay {
-        width: 100%;
+        width: 95%;
+    }
+
+    #downloadButton {
+        font-size: 3rem;
+    }
+
+    #makeAnotherDispoContainer {
+        font-size: 3rem;
+        margin-top: 24px;
     }
 }
 
@@ -172,25 +227,24 @@ button, a, input {
     top: 0;
     width: 100%;
 }
+#resultCanvasDate {
+    top: 0;
+    width: 100%;
+    mix-blend-mode: screen;  /* if hard-light doesn't work, use screen */
+}
 
 .editSecLabel {
     font-weight: bold;
     margin-top: 8px;
-}
-@media all and (orientation: portrait){
-    .editSecLabel {
-        font-size: 2rem;
-    }
-    .editImgBar button {
-        font-size: 1.5rem;
-        min-height: 64px;
-    }
+    color: var(--bg-dark);
 }
 
 #bleedNumber {
     white-space: nowrap;
     overflow: hidden;
     padding-right: 8px;
+    color: var(--bg-dark);
+    font-weight: bold;
 }
 
 .editImgBar {
@@ -212,6 +266,25 @@ button, a, input {
 }
 .editImgBar button:hover {
     text-decoration: underline;
+}
+
+.editSecHint {
+    margin-top: -6px;
+    padding-bottom: 0;
+}
+
+@media all and (orientation: portrait){
+    .editSecLabel {
+        font-size: 2rem;
+        margin-top: 32px;
+    }
+    .editImgBar button {
+        font-size: 1.5rem;
+        min-height: 64px;
+    }
+    .editSecHint {
+        padding-bottom: 8px;
+    }
 }
 .filterBtn {
     display: flex;

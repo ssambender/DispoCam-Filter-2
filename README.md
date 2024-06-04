@@ -62,7 +62,7 @@ Upcoming features:
 Known bugs:
 - [X] Light bleed scrollbar not working on mobile
 - [X] A small range of colors do not properly display as RAW with default LUT
-- [ ] Some light bleed images do not display correctly in order
+- [X] Some light bleed images do not display correctly in order
 
 _Please report any bugs you find!_
 

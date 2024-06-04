@@ -10,7 +10,7 @@
 
 body {
     margin: 0;
-    overflow: hidden;
+    overflow-x: hidden;
     background: center;
     height: 100vh;
     display: flex;
@@ -86,7 +86,7 @@ button, a, input {
 }
 @media all and (orientation: portrait) {
     #homeScreenDate {
-        font-size: 3rem;
+        display: none;
     }
 
     #creditsBottom a {
@@ -112,6 +112,10 @@ button, a, input {
      }
     .modal-content {
         transform: scale(1.5);
+    }
+
+    .hideOnMobile, .hideOnMobile a {
+        display: none;
     }
 }
 
@@ -207,6 +211,10 @@ button, a, input {
     #makeAnotherDispoContainer {
         font-size: 3rem;
         margin-top: 24px;
+    }
+
+    #makeAnotherLabel {
+        font-size: 30px;
     }
 }
 

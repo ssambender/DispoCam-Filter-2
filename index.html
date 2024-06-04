@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>DispoCam Filter</title>
-    <link rel="icon" href="favicon.png" />
+    <link rel="icon" href="favicon-hd.png" />
     <link rel="apple-touch-icon" href="app-icon.png" />
     <link rel="stylesheet" href="https://unpkg.com/bootstrap@4/dist/css/bootstrap.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="cropper.css">
@@ -219,6 +219,8 @@
         document.getElementById("uploadImageForDispo").style.display = "none";
         document.getElementById("resultImageDisplay").style.display = "flex";
 
+        document.getElementById('creditsBottom').classList.add('hideOnMobile');
+
         var input = document.getElementById("imageInput");
 
         var file = input.files[0];
@@ -306,7 +308,6 @@
         });
         * */
 
-        //todo - IF needsRotate === true, ROTATE CW 90deg BEFORE SAVING
         mergeImages([encoded64, dustOverlay, grainOverlay]).then(b64 => {
             const finalCanvas = document.createElement('canvas');
             const ctx = finalCanvas.getContext('2d');

@@ -45,21 +45,24 @@ What does Version 2 add?
 
 Upcoming features:
 - [X] Light bleed exporting
-- [ ] Light bleed blend mode (screen -> plus-lighter)
-- [ ] Vertical photo support
+- [ ] ~~Light bleed blend mode (screen -> plus-lighter)~~
+- [X] Vertical photo support
 - [X] Styled range inputs
 - [ ] Glow and chromatic aberration
 - [ ] Intensity strength sliders for grain, imperfections, and bleeding
 - [X] Mobile web-browser support
 - [X] Dark mode
 - [ ] Stack image filters
-- [ ] Date stamp
+- [X] Date stamp
+- [ ] More light bleed effects
+- [X] Mobile icon
 
 ---
 
 Known bugs:
 - [X] Light bleed scrollbar not working on mobile
-- [ ] A small range of colors do not properly display as RAW with default LUT
+- [X] A small range of colors do not properly display as RAW with default LUT
+- [ ] Some light bleed images do not display correctly in order
 
 _Please report any bugs you find!_
 

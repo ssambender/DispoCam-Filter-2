@@ -316,6 +316,11 @@
     }
 
     async function shareImage(img) {
+        // change download button in case didn't work
+        mobile = false;
+        document.getElementById('didntdownload').style.display = 'flex';
+        document.getElementById('downloadButton').innerText = "TRY DOWNLOAD AGAIN";
+
         const response = await fetch(img);
         const blob = await response.blob();
         const filesArray = [
@@ -332,11 +337,6 @@
             files: filesArray,
         };
         await navigator.share(shareData);
-
-        // change download button in case didn't work
-        mobile = false;
-        document.getElementById('didntdownload').style.display = 'flex';
-        document.getElementById('downloadButton').innerText = "TRY DOWNLOAD AGAIN";
     }
     function downloadImg() {
         function downloadMergedImage(base64) {

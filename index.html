@@ -92,7 +92,7 @@
                 <button class="filterBtn" onclick="filterChanged(this, 'citrus.png');">CITRUS</button>
                 <button class="filterBtn" onclick="filterChanged(this, 'tealorange.png');">SUNKIST</button>     <!-- FIX (copy teal orange on sc) -->
                 <button class="filterBtn" onclick="filterChanged(this, 'indie.png');">INDIE 2X</button>
-
+                <!--button class="filterBtn" onclick="filterChanged(this, 'invert.png');" style="border: 2px dashed var(--bg-dark);">INVERT</button-->
             </div>
         </div>
         <div id="imgFiltersVert">
@@ -147,6 +147,7 @@
 
     <!-- DOWNLOAD BUTTON -->
     <div style="text-align: center;">
+        <span id="didntdownload">DIDN'T DOWNLOAD?</span>
         <div>
             <a id="downloadButton" class="imageInputLabel bordered" onclick="downloadImg();" style="display: none; text-decoration: none; padding: 10px 20px">DOWNLOAD</a>
         </div>
@@ -210,6 +211,16 @@
     let isDarkMode = false;
     if(localStorage.getItem("theme") === "dark") {
         toggleDarkMode();
+    }
+
+    // check if mobile device
+    let mobile = false;
+    console.log(navigator.userAgent);
+    function isMobileDevice() {
+        return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+    if (isMobileDevice()) {
+        mobile = true;
     }
 
     // Code to animate loading text/symbol thing
@@ -304,16 +315,47 @@
         */
     }
 
+    async function shareImage(img) {
+        const response = await fetch(img);
+        const blob = await response.blob();
+        const filesArray = [
+            new File(
+                [blob],
+                'meme.jpg',
+                {
+                    type: "image/jpeg",
+                    lastModified: new Date().getTime()
+                }
+            )
+        ];
+        const shareData = {
+            files: filesArray,
+        };
+        await navigator.share(shareData);
+
+        // change download button in case didn't work
+        mobile = false;
+        document.getElementById('didntdownload').style.display = 'flex';
+        document.getElementById('downloadButton').innerText = "TRY DOWNLOAD AGAIN";
+    }
     function downloadImg() {
         function downloadMergedImage(base64) {
-            const link = document.createElement('a');
-            link.href = base64;
+            console.log("download merged image: " + uploadedFileName);
 
-            console.log(uploadedFileName);
-            link.download = uploadedFileName + '_dispo.png';
+            //download
+            if(mobile) {
+                //share via navigator
+                console.log("isMobile... share via navigator");
+                shareImage(base64);
+            }
+            else {
+                // above regular download
+                const link = document.createElement('a');
+                link.href = base64;
+                link.download = uploadedFileName + '_dispo.png';
+                link.dispatchEvent(new MouseEvent('click'));
+            }
 
-            // Dispatch a click event on the link element to trigger the download
-            link.dispatchEvent(new MouseEvent('click'));
         }
 
         var dustOverlay = document.getElementById('resultCanvasSpeckle').toDataURL();
@@ -562,6 +604,7 @@
         else {
             document.getElementById('resultCanvasDate').style.visibility = 'hidden';
             showDate = false;
+            dateScreen = false;
         }
 
         let buttons = document.querySelectorAll('.dateBtn');

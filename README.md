@@ -63,10 +63,10 @@ Upcoming features:
 - [ ] Intensity strength sliders for grain, imperfections, and bleeding
 - [X] Mobile web browser support
 - [X] Dark mode
-- [ ] Stack image filters
+- [ ] Stack multiple image filters
 - [X] Date stamp
 - [X] Date stamp multiple blend modes
-- [ ] More light bleed overlays
+- [X] More light bleed overlays
 - [X] Mobile icon
 - [ ] Randomize button to shuffle all effects
 
@@ -74,8 +74,10 @@ Upcoming features:
 
 Known bugs:
 - [X] Light bleed scrollbar not working on mobile
-- [X] A small range of colors do not properly display as RAW with default LUT
+- [X] A small range of certain colors do not properly display as RAW with default LUT
 - [X] Some light bleed images do not display correctly in order
+- [X] Cropper resizing resets on drag
+- [X] "Didn't download? Try again" button not appearing after failed download attempt
 
 _Please report any bugs you find!_
 

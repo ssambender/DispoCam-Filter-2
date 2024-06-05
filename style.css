@@ -199,6 +199,16 @@ button, a, input {
     font-size: 20px;
 }
 
+#didntdownload {
+    display: none;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: var(--bg-dark);
+}
+
 @media all and (orientation: portrait){
     #uploadImageForDispo .imageInputLabel {
         font-size: 60px;

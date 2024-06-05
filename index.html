@@ -808,6 +808,8 @@
             cropper = new Cropper(image, {
                 aspectRatio: 3/2, // The aspect ratio - disposable cameras are usually 3:2 I think
                 viewMode: 3, // Changes nav mode on crop modal
+                autoCropArea: 1, // Percent of image to crop on start, 1=100% of image, 0.7=75% of image, .8=default
+                dragMode: 'none', // Disables accidental crop resize
             });
         }).on('hidden.bs.modal', function () {
             cropper.destroy();

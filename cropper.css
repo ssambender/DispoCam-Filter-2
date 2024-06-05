@@ -62,8 +62,7 @@
 .cropper-view-box {
     display: block;
     height: 100%;
-    outline: 1px solid #39f;
-    outline-color: rgba(51, 153, 255, 0.75);
+    outline: rgba(255, 255, 255, 1) solid 1px;
     overflow: hidden;
     width: 100%;
 }
@@ -142,7 +141,7 @@
 }
 
 .cropper-line {
-    background-color: #39f;
+    background-color: #ffffff;
 }
 
 .cropper-line.line-e {
@@ -174,9 +173,9 @@
 }
 
 .cropper-point {
-    background-color: #39f;
+    background-color: #ffffff;
     height: 5px;
-    opacity: 0.75;
+    opacity: 1;
     width: 5px;
 }
 
@@ -252,13 +251,12 @@
 @media (min-width: 1200px) {
     .cropper-point.point-se {
         height: 5px;
-        opacity: 0.75;
         width: 5px;
     }
 }
 
 .cropper-point.point-se::before {
-    background-color: #39f;
+    background-color: #ffffff;
     bottom: -50%;
     content: ' ';
     display: block;

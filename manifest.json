@@ -1,0 +1,16 @@
+{
+  "name": "DispoCam 2",
+  "theme_color": "#676767",
+  "background_color": "#252422",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "https://ssambender.github.io/DispoCam-Filter-2/",
+  "description": "Fast and simple image editor to create disposable and film like photos.",
+  "icons": [
+    {
+      "src": "https://ssambender.github.io/DispoCam-Filter-2/app-icon.png",
+      "sizes": "128x128"
+    }
+  ]
+}

@@ -8,6 +8,13 @@
     --bg-dark: #252422;
 }
 
+html, body {
+    overflow: hidden;
+}
+body {
+    position: relative
+}
+
 body {
     margin: 0;
     overflow-x: hidden;
@@ -190,7 +197,7 @@ button, a, input {
     flex-direction: column;
     justify-content: center;
     width: 30%;
-    margin: 64px 0;
+    margin: 52px 0;
     user-select: none;
     position: relative;
 }
@@ -209,7 +216,26 @@ button, a, input {
     color: var(--bg-dark);
 }
 
+#randomizeContainer {
+    position: absolute;
+    width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    top: 24px;
+    height: 48px;
+}
+#randomizeContainer svg {
+    height: 50%;
+}
+
 @media all and (orientation: portrait){
+    #randomizeContainer {
+        top: 24px;
+        height: 64px;
+    }
+
     #uploadImageForDispo .imageInputLabel {
         font-size: 60px;
     }

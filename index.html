@@ -216,11 +216,6 @@
         toggleDarkMode();
     }
 
-    // prevent scrolling
-    document.addEventListener('touchmove', function(event) {
-        event.preventDefault();
-    }, { passive: false });
-
     // check if mobile device
     let mobile = false;
     console.log(navigator.userAgent);

@@ -2,7 +2,7 @@
 
 <div align="center">
   <a href="https://ssambender.github.io/DispoCam-Filter-2/" target="_blank">
-        <img src="https://raw.githubusercontent.com/ssambender/DispoCam-Filter-2/main/demo/example0.png" height="500px">
+        <img src="demo/example0.png" height="500px">
   </a>
 </div>
 
@@ -23,7 +23,7 @@
 
 <div align="center">
     <a href="https://ssambender.github.io/DispoCam-Filter-2/" target="_blank">
-          <img src="https://raw.githubusercontent.com/ssambender/DispoCam-Filter-2/main/favicon-hd.png">
+          <img src="favicon-hd.png">
     </a>
 </div>
 <br>
@@ -47,9 +47,9 @@ What does Version 2 add?
 ---
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/ssambender/DispoCam-Filter-2/main/demo/example2.png" height="400px">
-  <img src="https://raw.githubusercontent.com/ssambender/DispoCam-Filter-2/main/demo/example3.png" height="400px">
-  <img src="https://raw.githubusercontent.com/ssambender/DispoCam-Filter-2/main/demo/example4.png" height="400px">
+  <img src="demo/example2.png" height="400px">
+  <img src="demo/example3.png" height="400px">
+  <img src="demo/example4.png" height="400px">
 </div>
 
 ---
